@@ -1,25 +1,28 @@
 {{define "base"}}
 <!DOCTYPE html>
 <html lang='en'>
-    <head>
-        <meta charset='utf-8'>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{template "title" .}} - KPK Accounting</title>
-        <link rel='stylesheet' href='/static/css/main.css'>
 
-    </head>
-    <body>
-        <header>
-            <h1><a href='/'>KPK Accounting</a></h1>
-        </header>
-        {{template "nav" .}}
-        <main>
-            {{template "main" .}}
-            {{block "sidebar" .}}
-            {{end}}
-        </main>
-        <footer>Powered by <a href='https://golang.org/'>Go</a> in {{.CurrentYear}}</footer>
-        <script src="/static/js/main.js" type="text/javascript"></script>
-    </body>
+<head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{template "title" .}} - KPK Accounting</title>
+    <link rel='stylesheet' href='/static/css/normalize.css'>
+    <link rel='stylesheet' href='/static/css/style.css'>
+</head>
+
+<body>
+    <header>
+        <h1><a href='/'>KPK Accounting</a></h1>
+    </header>
+    {{template "nav" .}}
+    <main>
+        {{template "main" .}}
+        {{block "sidebar" .}}
+        {{end}}
+    </main>
+    <footer>Powered by <a href='https://golang.org/'>Go</a> in {{.CurrentYear}}</footer>
+    <script src="/static/js/main.js" type="text/javascript"></script>
+</body>
+
 </html>
 {{end}}
