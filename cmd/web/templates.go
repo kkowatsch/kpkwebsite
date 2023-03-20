@@ -5,34 +5,39 @@ import (
 	"html/template"
 	"io/fs"
 	"path/filepath"
+
+	"kaykodesigns.kpkaccounting.net/ui"
 )
 
 var Files embed.FS
 
 type templateData struct {
-	Flash string
+	CurrentYear int
 }
 
 func newTemplateCache() (map[string]*template.Template, error) {
 	cache := map[string]*template.Template{}
-	pages, err := fs.Glob(Files, "ui/html/pages/*.tmpl")
+	pages, err := fs.Glob(ui.Files, "html/pages/*.tmpl")
 	if err != nil {
 		return nil, err
 	}
+
 	for _, page := range pages {
 		name := filepath.Base(page)
 
 		patterns := []string{
-			"ui/html/base.tmpl",
-			"ui/html/partials/*.tmpl",
+			"html/base.tmpl",
+			"html/partials/*.tmpl",
 			page,
 		}
 
-		ts, err := template.New(name).ParseFS(Files, patterns...)
+		ts, err := template.ParseFS(ui.Files, patterns...)
 		if err != nil {
 			return nil, err
 		}
+
 		cache[name] = ts
 	}
+
 	return cache, nil
 }

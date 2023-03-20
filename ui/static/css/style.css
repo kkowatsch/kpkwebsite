@@ -1,0 +1,121 @@
+/* Variables */
+:root {
+    /* Brand Colours */
+    --light-blue: rgb(96, 175, 255);
+    --teal: rgb(37, 109, 133);
+    --dark-blue: rgb(6, 40, 61);
+    --light-gray: rgb(71, 181, 255);
+    --medium-gray: rgb(102, 102, 102);
+
+    /* Fonts */
+    --base-font-size: 16px;
+    --font-weight-medium: 600;
+    --font-weight-regular: 500;
+    --font-weight-normal: 400;
+    --h1: calc(26px + (48 - 26) * ((100vw - 300px) / (1600 - 300)));
+    --h2: calc(24px + (36 - 24) * ((100vw - 300px) / (1600 - 300)));
+    --h3: calc(22px + (28 - 22) * ((100vw - 300px) / (1600 - 300)));
+    --h4: calc(20px + (24 - 20) * ((100vw - 300px) / (1600 - 300)));
+    --h5: calc(18px + (20 - 18) * ((100vw - 300px) / (1600 - 300)));
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: 'Prompt', sans-serif;
+    font-style: normal;
+    font-weight: var(--font-weight-normal);
+    font-size: var(--base-font-size);
+    line-height: 24px;
+    color: var(--dark-blue);
+    height: 100%;
+}
+
+body {
+    background-color: white;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+section {
+    padding: 0 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+img {
+    width: 100%;
+}
+
+/* Fonts */
+h1 {
+    font-size: var(--h1);
+}
+
+h2 {
+    font-size: var(--h2);
+}
+
+h3 {
+    font-size: var(--h3);
+}
+
+h4 {
+    font-size: var(--h4);
+}
+
+h5 {
+    font-size: var(--h5);
+}
+
+h6 {
+    font-size: var(--base-font-size);
+    font-weight: var(--font-weight-regular);
+}
+
+h1,
+h2 {
+    font-weight: var(--font-weight-medium);
+    margin: 0;
+    padding: 10px 0;
+}
+
+h3,
+h4,
+h5,
+h6 {
+    padding: 15px 0 5px;
+    font-weight: var(--font-weight-regular);
+    margin: 0;
+}
+
+h6 {
+    padding: 0;
+}
+
+p {
+    line-height: 1.25em;
+    margin-top: 0;
+}
+
+.w-border {
+    border-bottom: 3px solid var(--light-blue);
+    width: fit-content;
+}
+
+/* Pages */
+div#headBanner.about {
+    background: url(../img/LowRes_shutterstock_1233294022.jpg), center, no-repeat;
+    padding: 40px 20px;
+    height: 200px;
+    align-items: center;
+    display: flex;
+}
