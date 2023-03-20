@@ -111,6 +111,142 @@ p {
     width: fit-content;
 }
 
+/* Navigation */
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #333;
+    color: #fff;
+}
+
+.navigation ul[hidden] {
+    display: none;
+}
+
+.navigation button.hamburger {
+    border: 0;
+    background: none;
+}
+
+.navigation button.hamburger::before {
+    content: ' ';
+    position: absolute;
+    border-radius: 200vh;
+    opacity: 0;
+    left: calc(-130vmax + 50%);
+    top: calc(-130vmax + 50%);
+    width: 260vmax;
+    height: 260vmax;
+    background: var(--dark-blue);
+    display: block;
+    z-index: -1;
+    transform: scale3d(0, 0, 0);
+    transform-origin: 50% 50%;
+    transition: 0.5s ease-in-out transform, 0.2s 0.4s ease-in-out opacity;
+}
+
+.navigation button.hamburger[aria\-expanded=true] {
+    color: white;
+}
+
+.navigation button.hamburger[aria\-expanded=true]::before {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+    transition: 0.5s ease-in-out transform, 0.1s ease-in-out opacity;
+}
+
+/*
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #333;
+    color: #fff;
+}
+
+.navigation ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navigation li {
+    position: relative;
+    margin-left: 1rem;
+}
+
+.navigation a {
+    display: block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: #fff;
+}
+
+.navigation ul ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    display: none;
+}
+
+.navigation ul ul li {
+    margin-top: 0.5rem;
+}
+
+.navigation ul ul a {
+    background-color: #333;
+}
+
+.navigation li:hover>ul {
+    display: block;
+}
+
+@media screen and (max-width: 768px) {
+    .navigation {
+        flex-direction: column;
+    }
+
+    .navigation ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navigation li {
+        margin: 0;
+        margin-bottom: 1rem;
+    }
+
+    .navigation li:hover>ul {
+        display: none;
+    }
+
+    .navigation li {
+        position: relative;
+    }
+
+    .navigation li:hover>ul {
+        display: block;
+    }
+
+    .navigation ul ul {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        z-index: 1;
+        display: none;
+    }
+
+    .navigation ul ul li {
+        margin-top: 0;
+    }
+} */
+
+
 /* Pages */
 div#headBanner.about {
     background: url(../img/LowRes_shutterstock_1233294022.jpg), center, no-repeat;
