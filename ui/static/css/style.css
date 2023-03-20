@@ -19,6 +19,10 @@
     --h5: calc(18px + (20 - 18) * ((100vw - 300px) / (1600 - 300)));
 }
 
+* {
+    box-sizing: border-box;
+}
+
 html,
 body {
     font-family: 'Prompt', sans-serif;
@@ -27,6 +31,11 @@ body {
     font-size: var(--base-font-size);
     line-height: 24px;
     color: var(--dark-blue);
+    height: 100%;
+}
+
+body {
+    background-color: white;
 }
 
 main {
@@ -36,7 +45,14 @@ main {
 }
 
 section {
-    padding: 0 20px;
+    padding: 0 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+img {
+    width: 100%;
 }
 
 /* Fonts */
@@ -69,18 +85,37 @@ h1,
 h2 {
     font-weight: var(--font-weight-medium);
     margin: 0;
-    padding: 0px 0px 10px;
+    padding: 10px 0;
 }
 
 h3,
 h4,
 h5,
 h6 {
+    padding: 15px 0 5px;
     font-weight: var(--font-weight-regular);
     margin: 0;
+}
+
+h6 {
+    padding: 0;
+}
+
+p {
+    line-height: 1.25em;
+    margin-top: 0;
 }
 
 .w-border {
     border-bottom: 3px solid var(--light-blue);
     width: fit-content;
+}
+
+/* Pages */
+div#headBanner.about {
+    background: url(../img/LowRes_shutterstock_1233294022.jpg), center, no-repeat;
+    padding: 40px 20px;
+    height: 200px;
+    align-items: center;
+    display: flex;
 }
