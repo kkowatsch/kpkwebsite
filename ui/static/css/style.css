@@ -112,60 +112,8 @@ p {
 }
 
 /* Navigation */
-/* .navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: var(--dark-blue);
-    color: white;
-}
 
-.navigation ul[hidden] {
-    display: none;
-}
-
-.navigation button.hamburger {
-    border: 0;
-    background: none;
-    color: white;
-    font-size: 1.9em;
-    cursor: pointer;
-}
-
-.navigation button.hamburger::before {
-    content: ' ';
-    position: absolute;
-    border-radius: 200vh;
-    opacity: 0;
-    left: calc(-130vmax + 50%);
-    top: calc(-130vmax + 50%);
-    width: 260vmax;
-    height: 260vmax;
-    background: var(--dark-blue);
-    display: block;
-    z-index: -1;
-    transform: scale3d(0, 0, 0);
-    transform-origin: 50% 50%;
-    transition: 0.5s ease-in-out transform, 0.2s 0.4s ease-in-out opacity;
-}
-
-.navigation button.hamburger[aria\-expanded=true] {
-    color: white;
-}
-
-.navigation button.hamburger[aria\-expanded=true]::before {
-    opacity: 1;
-    transform: scale3d(1, 1, 1);
-    transition: 0.5s ease-in-out transform, 0.1s ease-in-out opacity;
-}
-
-.navbar-brand img {
-    width: 5rem;
-    margin-top: 8px;
-} */
-
-/* Copied Code */
+/* Mobile navigation */
 .navigation {
     background: var(--dark-blue);
     display: flex;
@@ -193,36 +141,27 @@ nav ul {
     position: absolute;
     width: 100%;
     left: 0;
-}
-
-nav ul li {
-    float: left;
-    position: relative;
-}
-
-nav ul li a,
-nav ul li a:visited {
-    display: block;
-    padding: 0 20px;
-    line-height: 55px;
-    color: #fff;
-    background: #262626;
-    text-decoration: none;
+    top: 70px;
 }
 
 nav ul li a {
-    background: transparent;
-    color: #FFF;
+    display: block;
+    line-height: initial;
+    color: white;
+    padding: 10px 20px;
+    background-color: var(--dark-blue);
+    text-decoration: none;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
 }
 
-nav ul li a:hover,
-nav ul li a:visited:hover {
-    background: #2581DC;
-    color: #ffffff;
+nav ul li a:hover {
+    border-top: 2px solid var(--light-blue);
+    border-bottom: 2px solid var(--light-blue);
 }
 
-.navbar-dropdown li a {
-    background: #2581DC;
+nav ul li a.active {
+    background-color: var(--light-blue);
 }
 
 nav ul li a:not(:only-child):after,
@@ -231,13 +170,6 @@ nav ul li a:visited:not(:only-child):after {
     content: ' \025BE';
 }
 
-@media only screen and (min-width: 800px) {
-    nav {
-        float: right;
-    }
-}
-
-/* Mobile navigation */
 .navigation button.nav-mobile {
     border: 0;
     background: none;
@@ -246,73 +178,30 @@ nav ul li a:visited:not(:only-child):after {
     cursor: pointer;
 }
 
-.nav-mobile {
-    display: block;
-}
+@media only screen and (min-width: 800px) {
+    button.nav-mobile {
+        display: none;
+    }
 
-nav ul li {
-    float: none;
-}
+    nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex !important;
+        flex-direction: row;
+        gap: 16px;
+        position: initial;
+    }
 
-nav ul li a {
-    padding: 15px;
-    line-height: 20px;
-    background: #262626;
-}
+    nav ul li a {
+        padding: 5px;
+    }
 
-@media screen and (min-width:800px) {
-    .nav-list {
-        display: block !important;
+    nav ul li a.active {
+        border-bottom: 2px solid var(--light-blue);
+        background-color: transparent;
     }
 }
-
-#navbar-toggle {
-    position: absolute;
-    left: 18px;
-    top: 15px;
-    cursor: pointer;
-    padding: 10px 35px 16px 0px;
-}
-
-#navbar-toggle span,
-#navbar-toggle span:before,
-#navbar-toggle span:after {
-    cursor: pointer;
-    border-radius: 1px;
-    height: 3px;
-    width: 30px;
-    background: #ffffff;
-    position: absolute;
-    display: block;
-    content: '';
-    transition: all 300ms ease-in-out;
-}
-
-#navbar-toggle span:before {
-    top: -10px;
-}
-
-#navbar-toggle span:after {
-    bottom: -10px;
-}
-
-#navbar-toggle.active span {
-    background-color: transparent;
-}
-
-#navbar-toggle.active span:before,
-#navbar-toggle.active span:after {
-    top: 0;
-}
-
-#navbar-toggle.active span:before {
-    transform: rotate(45deg);
-}
-
-#navbar-toggle.active span:after {
-    transform: rotate(-45deg);
-}
-
 
 /* Pages */
 div#headBanner.about {
