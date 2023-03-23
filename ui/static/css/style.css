@@ -112,13 +112,13 @@ p {
 }
 
 /* Navigation */
-.navigation {
+/* .navigation {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
-    background-color: #333;
-    color: #fff;
+    padding: 10px 20px;
+    background-color: var(--dark-blue);
+    color: white;
 }
 
 .navigation ul[hidden] {
@@ -128,6 +128,9 @@ p {
 .navigation button.hamburger {
     border: 0;
     background: none;
+    color: white;
+    font-size: 1.9em;
+    cursor: pointer;
 }
 
 .navigation button.hamburger::before {
@@ -157,94 +160,158 @@ p {
     transition: 0.5s ease-in-out transform, 0.1s ease-in-out opacity;
 }
 
-/*
+.navbar-brand img {
+    width: 5rem;
+    margin-top: 8px;
+} */
+
+/* Copied Code */
 .navigation {
+    background: var(--dark-blue);
     display: flex;
     justify-content: space-between;
+    padding: 10px 20px;
     align-items: center;
-    padding: 1rem;
-    background-color: #333;
-    color: #fff;
 }
 
-.navigation ul {
-    display: flex;
+a.brand img {
+    width: 5em;
+    margin-top: 8px;
+}
+
+a.brand img,
+a.brand:visited {
+    text-decoration: none;
+}
+
+nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
-}
-
-.navigation li {
-    position: relative;
-    margin-left: 1rem;
-}
-
-.navigation a {
-    display: block;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    color: #fff;
-}
-
-.navigation ul ul {
+    display: flex;
+    flex-direction: column;
     position: absolute;
-    top: 100%;
+    width: 100%;
     left: 0;
-    z-index: 1;
-    display: none;
 }
 
-.navigation ul ul li {
-    margin-top: 0.5rem;
+nav ul li {
+    float: left;
+    position: relative;
 }
 
-.navigation ul ul a {
-    background-color: #333;
+nav ul li a,
+nav ul li a:visited {
+    display: block;
+    padding: 0 20px;
+    line-height: 55px;
+    color: #fff;
+    background: #262626;
+    text-decoration: none;
 }
 
-.navigation li:hover>ul {
+nav ul li a {
+    background: transparent;
+    color: #FFF;
+}
+
+nav ul li a:hover,
+nav ul li a:visited:hover {
+    background: #2581DC;
+    color: #ffffff;
+}
+
+.navbar-dropdown li a {
+    background: #2581DC;
+}
+
+nav ul li a:not(:only-child):after,
+nav ul li a:visited:not(:only-child):after {
+    padding-left: 4px;
+    content: ' \025BE';
+}
+
+@media only screen and (min-width: 800px) {
+    nav {
+        float: right;
+    }
+}
+
+/* Mobile navigation */
+.navigation button.nav-mobile {
+    border: 0;
+    background: none;
+    color: white;
+    font-size: 1.9em;
+    cursor: pointer;
+}
+
+.nav-mobile {
     display: block;
 }
 
-@media screen and (max-width: 768px) {
-    .navigation {
-        flex-direction: column;
-    }
+nav ul li {
+    float: none;
+}
 
-    .navigation ul {
-        flex-direction: column;
-        align-items: center;
-    }
+nav ul li a {
+    padding: 15px;
+    line-height: 20px;
+    background: #262626;
+}
 
-    .navigation li {
-        margin: 0;
-        margin-bottom: 1rem;
+@media screen and (min-width:800px) {
+    .nav-list {
+        display: block !important;
     }
+}
 
-    .navigation li:hover>ul {
-        display: none;
-    }
+#navbar-toggle {
+    position: absolute;
+    left: 18px;
+    top: 15px;
+    cursor: pointer;
+    padding: 10px 35px 16px 0px;
+}
 
-    .navigation li {
-        position: relative;
-    }
+#navbar-toggle span,
+#navbar-toggle span:before,
+#navbar-toggle span:after {
+    cursor: pointer;
+    border-radius: 1px;
+    height: 3px;
+    width: 30px;
+    background: #ffffff;
+    position: absolute;
+    display: block;
+    content: '';
+    transition: all 300ms ease-in-out;
+}
 
-    .navigation li:hover>ul {
-        display: block;
-    }
+#navbar-toggle span:before {
+    top: -10px;
+}
 
-    .navigation ul ul {
-        position: absolute;
-        top: 0;
-        left: 100%;
-        z-index: 1;
-        display: none;
-    }
+#navbar-toggle span:after {
+    bottom: -10px;
+}
 
-    .navigation ul ul li {
-        margin-top: 0;
-    }
-} */
+#navbar-toggle.active span {
+    background-color: transparent;
+}
+
+#navbar-toggle.active span:before,
+#navbar-toggle.active span:after {
+    top: 0;
+}
+
+#navbar-toggle.active span:before {
+    transform: rotate(45deg);
+}
+
+#navbar-toggle.active span:after {
+    transform: rotate(-45deg);
+}
 
 
 /* Pages */
