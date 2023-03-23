@@ -1,12 +1,6 @@
 // Navigation
+
 // Mobile Menu Toggle
-// const toggleMenu = document.querySelector(".navigation button");
-// const menu = document.querySelector(".navigation ul");
-
-// hamburger.addEventListener('click', function () {
-//     navigation.classList.toggle('open');
-// });
-
 const toggleMenu = document.querySelector(".navigation button");
 const menu = document.querySelector(".navigation ul");
 
