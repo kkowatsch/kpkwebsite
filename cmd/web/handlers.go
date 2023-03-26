@@ -24,7 +24,7 @@ func (app *application) services(w http.ResponseWriter, r *http.Request) {
 
 func (app *application) contact(w http.ResponseWriter, r *http.Request) {
 	data := app.newTemplateData(r)
-	app.render(w, http.StatusOK, "home.tmpl", data)
+	app.render(w, http.StatusOK, "contact.tmpl", data)
 }
 
 func (app *application) contactFormPost(w http.ResponseWriter, r *http.Request) {
