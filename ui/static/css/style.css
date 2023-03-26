@@ -12,7 +12,7 @@
     --font-weight-medium: 600;
     --font-weight-regular: 500;
     --font-weight-normal: 400;
-    --h1: calc(26px + (48 - 26) * ((100vw - 300px) / (1600 - 300)));
+    --h1: calc(30px + (48 - 30) * ((100vw - 300px) / (1600 - 300)));
     --h2: calc(24px + (36 - 24) * ((100vw - 300px) / (1600 - 300)));
     --h3: calc(22px + (28 - 22) * ((100vw - 300px) / (1600 - 300)));
     --h4: calc(20px + (24 - 20) * ((100vw - 300px) / (1600 - 300)));
@@ -51,11 +51,15 @@ section {
     gap: 10px;
 }
 
-section:last-child {
+/* section:last-child {
     padding-top: 0;
-}
+} */
 
 p:last-child {
+    margin-bottom: 0;
+}
+
+ul {
     margin-bottom: 0;
 }
 
@@ -244,4 +248,9 @@ nav ul li a:visited:not(:only-child):after {
 /* About */
 #headBanner.about::before {
     background-image: url('../img/LowRes_shutterstock_572692948.jpg');
+}
+
+/* Services */
+#headBanner.services::before {
+    background-image: url('../img/LowRes_shutterstock_1579484785.jpg');
 }

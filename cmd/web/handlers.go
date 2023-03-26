@@ -18,7 +18,7 @@ func (app *application) about(w http.ResponseWriter, r *http.Request) {
 
 func (app *application) services(w http.ResponseWriter, r *http.Request) {
 	data := app.newTemplateData(r)
-	app.render(w, http.StatusOK, "home.tmpl", data)
+	app.render(w, http.StatusOK, "services.tmpl", data)
 
 }
 
