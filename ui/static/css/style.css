@@ -41,14 +41,22 @@ body {
 main {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    /* gap: 20px; */
 }
 
 section {
-    padding: 0 20px 20px;
+    padding: 20px 20px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+section:last-child {
+    padding-top: 0;
+}
+
+p:last-child {
+    margin-bottom: 0;
 }
 
 img {
@@ -142,6 +150,7 @@ nav ul {
     width: 100%;
     left: 0;
     top: 70px;
+    z-index: 2;
 }
 
 nav ul li a {
@@ -204,10 +213,35 @@ nav ul li a:visited:not(:only-child):after {
 }
 
 /* Pages */
-div#headBanner.about {
-    background: url(../img/LowRes_shutterstock_1233294022.jpg), center, no-repeat;
-    padding: 40px 20px;
+
+/* Page Banner */
+#headBanner {
+    position: relative;
     height: 200px;
-    align-items: center;
+    width: 100%;
     display: flex;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+#headBanner::before {
+    content: "";
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.75;
+    background-position: bottom;
+}
+
+#headBanner h1 {
+    position: relative;
+}
+
+/* About */
+#headBanner.about::before {
+    background-image: url('../img/LowRes_shutterstock_572692948.jpg');
 }
