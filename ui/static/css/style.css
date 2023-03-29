@@ -1,11 +1,15 @@
 /* Variables */
 :root {
+    --border-radius: 4px;
+    --border-size: 1px;
+
     /* Brand Colours */
     --light-blue: rgb(96, 175, 255);
     --teal: rgb(37, 109, 133);
     --dark-blue: rgb(6, 40, 61);
     --light-gray: rgb(71, 181, 255);
     --medium-gray: rgb(102, 102, 102);
+    --hover: rgb(13, 81, 104);
 
     /* Fonts */
     --base-font-size: 16px;
@@ -123,6 +127,53 @@ p {
     width: fit-content;
 }
 
+/* Buttons */
+.btn,
+a.btn,
+input[type="submit"] {
+    cursor: pointer;
+    font-weight: var(--font-weight-medium);
+    font-size: var(--base-font-size);
+    border-radius: var(--border-radius);
+    text-align: center;
+    text-decoration: none;
+    margin: 4px 2px;
+    transition: 0.4s;
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    gap: 5px;
+}
+
+.btn:hover,
+a.btn:hover,
+input[type="submit"] {
+    background-color: var(--hover);
+    color: white;
+}
+
+.btn.primary {
+    background-color: var(--teal);
+    color: white;
+    border: var(--border-size) solid var(--teal);
+}
+
+.btn.secondary {
+    background-color: transparent;
+    color: var(--dark-blue);
+    border: var(--border-size) solid var(--dark-blue);
+    box-shadow: 0px 1px 3px var(--medium-gray);
+}
+
+.btn.onlyText {
+    background-color: transparent;
+    color: inherit;
+    border: var(--border-size) solid transparent;
+}
+
 /* Navigation */
 
 /* Mobile navigation */
@@ -132,6 +183,9 @@ p {
     justify-content: space-between;
     padding: 10px 20px;
     align-items: center;
+    z-index: 2;
+    position: sticky;
+    top: 0;
 }
 
 a.brand img {
@@ -240,6 +294,16 @@ nav ul li a:visited:not(:only-child):after {
 
 #curve path {
     fill: #fff;
+}
+
+.img-overlay {
+    position: absolute;
+    width: 50%;
+    right: 20px;
+    bottom: 18px;
+    background-color: rgb(255 255 255 / 80%);
+    padding: 10px 10px 0;
+    z-index: 0;
 }
 
 /* Page Banner */
