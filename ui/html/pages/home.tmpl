@@ -25,7 +25,7 @@
     <a href="/contact" class="btn primary">Let's Get Started!</a>
 </section>
 <section id="homeServices" class="sectionbg">
-    <div class="servicesWrapper">
+    <div class="sectionbgWrapper">
         <h2 class="w-border">Services</h2>
         {{template "flipCards" .}}
     </div>
@@ -35,6 +35,9 @@
     <a href="/about" class="btn secondary">Learn More</a>
 </section>
 <section id="homeContact">
-    <p>This is where contact will go when ready for it.</p>
+    <div class="sectionbgWrapper">
+        {{template "contactIntroSection" .}}
+        {{template "contactFormSection" .}}
+    </div>
 </section>
 {{end}}
