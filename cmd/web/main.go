@@ -8,6 +8,7 @@ import (
 	"os"
 
 	"github.com/alexedwards/scs/v2"
+	"github.com/go-playground/form"
 )
 
 type application struct {
@@ -15,6 +16,7 @@ type application struct {
 	infoLog        *log.Logger
 	sessionManager *scs.SessionManager
 	templateCache  map[string]*template.Template
+	formDecoder    *form.Decoder
 }
 
 func main() {
@@ -30,6 +32,8 @@ func main() {
 		errorLog.Fatal(err)
 	}
 
+	formDecoder := form.NewDecoder()
+
 	sessionManager := scs.New()
 
 	app := &application{
@@ -37,6 +41,7 @@ func main() {
 		infoLog:        infoLog,
 		sessionManager: sessionManager,
 		templateCache:  templateCache,
+		formDecoder:    formDecoder,
 	}
 
 	srv := &http.Server{

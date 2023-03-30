@@ -1,6 +1,17 @@
 {{define "nav"}}
-<nav>
-    <a href='/'>Home</a>
-    <a href='/kpk-about'>About</a>
-</nav>
+<div id="mainNavigation" class="navigation">
+    <a href="/" class="brand">
+        <img src="../static/img/KPK Logo_White.png">
+    </a>
+    <nav role="navigation">
+        <button class="nav-mobile" aria-label="menu" aria-expanded="false" aria-controls="menu"><i
+                class="fa fa-bars"></i></button>
+        <ul id="menu" class="nav-list" hidden>
+            <li> <a href="/">Home</a> </li>
+            <li> <a href="/about">About</a> </li>
+            <li> <a href="/services">Services</a> </li>
+            <li> <a href="/contact">Contact</a> </li>
+        </ul>
+    </nav>
+</div>
 {{end}}
