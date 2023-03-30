@@ -13,6 +13,7 @@ var Files embed.FS
 
 type templateData struct {
 	CurrentYear int
+	Form        any
 }
 
 func newTemplateCache() (map[string]*template.Template, error) {

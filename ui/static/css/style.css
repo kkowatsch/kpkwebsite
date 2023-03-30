@@ -1,18 +1,22 @@
 /* Variables */
 :root {
+    --border-radius: 4px;
+    --border-size: 1px;
+
     /* Brand Colours */
     --light-blue: rgb(96, 175, 255);
     --teal: rgb(37, 109, 133);
     --dark-blue: rgb(6, 40, 61);
     --light-gray: rgb(71, 181, 255);
     --medium-gray: rgb(102, 102, 102);
+    --hover: rgb(13, 81, 104);
 
     /* Fonts */
     --base-font-size: 16px;
     --font-weight-medium: 600;
     --font-weight-regular: 500;
     --font-weight-normal: 400;
-    --h1: calc(26px + (48 - 26) * ((100vw - 300px) / (1600 - 300)));
+    --h1: calc(30px + (48 - 30) * ((100vw - 300px) / (1600 - 300)));
     --h2: calc(24px + (36 - 24) * ((100vw - 300px) / (1600 - 300)));
     --h3: calc(22px + (28 - 22) * ((100vw - 300px) / (1600 - 300)));
     --h4: calc(20px + (24 - 20) * ((100vw - 300px) / (1600 - 300)));
@@ -41,14 +45,26 @@ body {
 main {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    /* gap: 20px; */
 }
 
 section {
-    padding: 0 20px 20px;
+    padding: 20px 20px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+/* section:last-child {
+    padding-top: 0;
+} */
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+ul {
+    margin-bottom: 0;
 }
 
 img {
@@ -111,11 +127,302 @@ p {
     width: fit-content;
 }
 
-/* Pages */
-div#headBanner.about {
-    background: url(../img/LowRes_shutterstock_1233294022.jpg), center, no-repeat;
-    padding: 40px 20px;
-    height: 200px;
-    align-items: center;
+/* Buttons */
+.btn,
+a.btn,
+input[type="submit"] {
+    cursor: pointer;
+    font-weight: var(--font-weight-medium);
+    font-size: var(--base-font-size);
+    border-radius: var(--border-radius);
+    text-align: center;
+    text-decoration: none;
+    margin: 4px 2px;
+    transition: 0.4s;
+    width: fit-content;
     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    gap: 5px;
+}
+
+.btn:hover,
+a.btn:hover,
+input[type="submit"] {
+    background-color: var(--hover);
+    color: white;
+}
+
+.btn.primary {
+    background-color: var(--teal);
+    color: white;
+    border: var(--border-size) solid var(--teal);
+}
+
+.btn.secondary {
+    background-color: transparent;
+    color: var(--dark-blue);
+    border: var(--border-size) solid var(--dark-blue);
+    box-shadow: 0px 1px 3px var(--medium-gray);
+}
+
+.btn.onlyText {
+    background-color: transparent;
+    color: inherit;
+    border: var(--border-size) solid transparent;
+}
+
+/* Navigation */
+
+/* Mobile navigation */
+.navigation {
+    background: var(--dark-blue);
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    align-items: center;
+    z-index: 2;
+    position: sticky;
+    top: 0;
+}
+
+a.brand img {
+    width: 5em;
+    margin-top: 8px;
+}
+
+a.brand img,
+a.brand:visited {
+    text-decoration: none;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 70px;
+    z-index: 2;
+}
+
+nav ul li a {
+    display: block;
+    line-height: initial;
+    color: white;
+    padding: 10px 20px;
+    background-color: var(--dark-blue);
+    text-decoration: none;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+}
+
+nav ul li a:hover {
+    border-top: 2px solid var(--light-blue);
+    border-bottom: 2px solid var(--light-blue);
+}
+
+nav ul li a.active {
+    background-color: var(--light-blue);
+}
+
+nav ul li a:not(:only-child):after,
+nav ul li a:visited:not(:only-child):after {
+    padding-left: 4px;
+    content: ' \025BE';
+}
+
+.navigation button.nav-mobile {
+    border: 0;
+    background: none;
+    color: white;
+    font-size: 1.9em;
+    cursor: pointer;
+}
+
+@media only screen and (min-width: 800px) {
+    button.nav-mobile {
+        display: none;
+    }
+
+    nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex !important;
+        flex-direction: row;
+        gap: 16px;
+        position: initial;
+    }
+
+    nav ul li a {
+        padding: 5px;
+    }
+
+    nav ul li a.active {
+        border-bottom: 2px solid var(--light-blue);
+        background-color: transparent;
+    }
+}
+
+/* Components */
+
+/* Page Banner */
+#headBanner,
+.sectionbg {
+    position: relative;
+    width: 100%;
+    padding: 40px 20px;
+}
+
+#headBanner {
+    height: 200px;
+    display: flex;
+    align-items: center;
+}
+
+#headBanner::before,
+.sectionbg::before {
+    content: "";
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.75;
+    background-position: bottom;
+    z-index: -1;
+}
+
+.sectionbgWrapper {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    border-radius: var(--border-radius);
+}
+
+/* Flip Cards */
+/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-card {
+    background-color: transparent;
+    width: 100%;
+    height: 200px;
+    cursor: pointer;
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 1.3s;
+    transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner,
+.flip-card:focus .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    border: 2px solid white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 3px 6px rgb(6 40 61 / 30%);
+    padding: 40px 20px;
+}
+
+/* Style the front side */
+.flip-card-front {
+    background-color: var(--teal);
+    color: white;
+}
+
+.flip-card-front i {
+    font-size: 3.25em;
+}
+
+/* Style the back side */
+.flip-card-back {
+    background-color: white;
+    color: var(--dark-blue);
+    transform: rotateY(180deg);
+    text-align: left;
+}
+
+/* Pages */
+/* Home - Jumbotron */
+#homeBanner {
+    background-image: url(../img/LowRes_shutterstock_1606985236.jpg);
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 50vh;
+    background-position: 28% center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#curve {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+#curve path {
+    fill: #fff;
+}
+
+.img-overlay {
+    position: absolute;
+    width: 50%;
+    right: 20px;
+    bottom: 18px;
+    background-color: rgb(255 255 255 / 80%);
+    padding: 10px 10px 0;
+    z-index: 0;
+}
+
+/* Home - Services Section */
+#homeServices .sectionbgWrapper {
+    align-items: center;
+}
+
+
+/* About */
+#headBanner.about::before {
+    background-image: url('../img/LowRes_shutterstock_572692948.jpg');
+}
+
+/* Services */
+#headBanner.services::before,
+#homeServices::before {
+    background-image: url('../img/LowRes_shutterstock_1579484785.jpg');
+}
+
+/* Contact */
+#homeContact {
+    background-color: var(--teal);
 }
