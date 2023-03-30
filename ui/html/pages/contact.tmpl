@@ -4,19 +4,8 @@
 <div id="headBanner" class="contact">
     <h1>Contact</h1>
 </div>
-<section id="contactIntro">
-    <h2 class="w-border">Get in Touch</h2>
-    <div class="paraWrap">
-        <p>
-            Let’s set up a time to chat. I can learn more about you and your business, tell you more about what I do and
-            how I can help.
-        </p>
-        <p>
-            Simply fill out the form below or call <a href="tel:16475455197">647-545-5197</a>.
-        </p>
-    </div>
-</section>
 <section id="contactForm">
+    {{template "contactIntro" .}}
     {{template "contactForm" .}}
 </section>
 {{end}}

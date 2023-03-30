@@ -301,14 +301,15 @@ nav ul li a:visited:not(:only-child):after {
     z-index: -1;
 }
 
-/* #headBanner h1,
-.sectionbg div {
-    position: relative;
-} */
-
-/* .sectionbg div:first-child {
+.sectionbgWrapper {
     background-color: rgba(255, 255, 255, 0.8);
-} */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    border-radius: var(--border-radius);
+}
 
 /* Flip Cards */
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
@@ -405,16 +406,8 @@ nav ul li a:visited:not(:only-child):after {
 }
 
 /* Home - Services Section */
-.servicesWrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    justify-content: center;
+#homeServices .sectionbgWrapper {
     align-items: center;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: var(--border-radius);
-    padding: 20px;
 }
 
 
@@ -427,4 +420,9 @@ nav ul li a:visited:not(:only-child):after {
 #headBanner.services::before,
 #homeServices::before {
     background-image: url('../img/LowRes_shutterstock_1579484785.jpg');
+}
+
+/* Contact */
+#homeContact {
+    background-color: var(--teal);
 }
