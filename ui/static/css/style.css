@@ -49,26 +49,47 @@ main {
 }
 
 section {
-    padding: 20px 20px;
+    padding: 40px 20px;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-/* section:last-child {
-    padding-top: 0;
-} */
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contentSection {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+section.inside {
+    padding: 20px;
+}
+
+ul {
+    margin-top: 0;
+}
 
 p:last-child {
     margin-bottom: 0;
 }
 
-ul {
-    margin-bottom: 0;
-}
-
 img {
     width: 100%;
+}
+
+@media only screen and (min-width: 60em) {
+    .content {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 80px 20px;
+        width: 100%;
+    }
 }
 
 /* Fonts */
@@ -245,7 +266,7 @@ nav ul li a:visited:not(:only-child):after {
     cursor: pointer;
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 60em) {
     button.nav-mobile {
         display: none;
     }
@@ -273,20 +294,20 @@ nav ul li a:visited:not(:only-child):after {
 /* Components */
 
 /* Page Banner */
-#headBanner,
+.headBanner,
 .sectionbg {
     position: relative;
     width: 100%;
-    padding: 40px 20px;
 }
 
-#headBanner {
+.headBanner {
     height: 200px;
     display: flex;
-    align-items: center;
+    align-items: start;
+    justify-content: center;
 }
 
-#headBanner::before,
+.headBanner::before,
 .sectionbg::before {
     content: "";
     background-size: cover;
@@ -301,17 +322,28 @@ nav ul li a:visited:not(:only-child):after {
     z-index: -1;
 }
 
-.sectionbgWrapper {
+.content_bg {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    justify-content: center;
     border-radius: var(--border-radius);
 }
 
+@media only screen and (min-width: 60em) {
+
+    .headBanner,
+    .sectionbg {
+        padding: 80px 20px;
+    }
+}
+
 /* Flip Cards */
+.flipCardWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
     background-color: transparent;
@@ -371,6 +403,12 @@ nav ul li a:visited:not(:only-child):after {
     text-align: left;
 }
 
+@media only screen and (min-width: 60em) {
+    .flipCardWrapper {
+        flex-direction: row;
+    }
+}
+
 /* Pages */
 /* Home - Jumbotron */
 #homeBanner {
@@ -387,7 +425,7 @@ nav ul li a:visited:not(:only-child):after {
 
 #curve {
     position: absolute;
-    bottom: 0;
+    bottom: -5px;
     width: 100%;
 }
 
@@ -405,24 +443,57 @@ nav ul li a:visited:not(:only-child):after {
     z-index: 0;
 }
 
+@media only screen and (min-width: 60em) {
+    #homeBanner {
+        height: 75vh;
+    }
+
+    .jumbotron .content {
+        align-items: end;
+        height: 100%;
+        justify-content: end;
+    }
+
+    .img-overlay {
+        width: 35%;
+        bottom: 45px;
+        padding: 40px 40px 0;
+    }
+}
+
+@media only screen and (min-width: 75em) {
+    #homeBanner {
+        height: 85vh;
+    }
+}
+
+/* Home - Intro */
+section#homeIntro {
+    padding-top: 20px;
+}
+
 /* Home - Services Section */
-#homeServices .sectionbgWrapper {
+#homeServices .contentSection {
     align-items: center;
 }
 
+/* Home - Contact Section */
+#homeContact {
+    background-color: var(--teal);
+}
 
 /* About */
-#headBanner.about::before {
+#about.headBanner::before {
     background-image: url('../img/LowRes_shutterstock_572692948.jpg');
 }
 
 /* Services */
-#headBanner.services::before,
+#services.headBanner::before,
 #homeServices::before {
     background-image: url('../img/LowRes_shutterstock_1579484785.jpg');
 }
 
 /* Contact */
-#homeContact {
-    background-color: var(--teal);
+#contact.headBanner::before {
+    background-image: url('../img/LowRes_shutterstock_1491349139.jpg');
 }

@@ -7,37 +7,55 @@
             d="M 0,400 C 0,400 0,200 0,200 C 131.46666666666664,238.53333333333333 262.9333333333333,277.06666666666666 437,267 C 611.0666666666667,256.93333333333334 827.7333333333333,198.26666666666668 1002,179 C 1176.2666666666667,159.73333333333332 1308.1333333333332,179.86666666666667 1440,200 C 1440,200 1440,400 1440,400 Z"
             transform="translate(0-135.53)" />
     </svg>
-    <div class="img-overlay">
-        <img src="../static/img/KPK Logo_Colour.png" alt="KPK Accounting Inc. Logo, colour">
+    <div class="content">
+        <div class="img-overlay">
+            <img src="../static/img/KPK Logo_Colour.png" alt="KPK Accounting Inc. Logo, colour">
+        </div>
     </div>
 </section>
 <section id="homeIntro">
-    <h3>Can’t afford a full-time CFO but need help?</h3>
-    <p>A Fractional CFO can be the answer.</p>
-    <h2 class="w-border">What is a FRACTIONAL CFO?</h2>
-    <p>A Fractional CFO is a part-time financial expert who offers their valuable expertise to small & large
-        business
-        owners, entrepreneurs and start-ups to help them develop scalable, long-term financial health.</p>
-    <p>This cost-effective solution can bridge the gap until you can sustain a full-time CFO. In the meantime, there
-        are
-        no commitments, no recruitment fees, fixed retainers, or costly cancellation fees. Only the professional
-        expertise you need when you need it.</p>
-    <a href="/contact" class="btn primary">Let's Get Started!</a>
+    <div class="content">
+        <div class="contentSection">
+            <h3>Can’t afford a full-time CFO but need help?</h3>
+            <div class="paraWrap">
+                <p>A Fractional CFO can be the answer.</p>
+            </div>
+        </div>
+        <div class="contentSection">
+            <h2 class="w-border">What is a FRACTIONAL CFO?</h2>
+            <div class="paraWrap">
+                <p>A Fractional CFO is a part-time financial expert who offers their valuable expertise to small & large
+                    business
+                    owners, entrepreneurs and start-ups to help them develop scalable, long-term financial health.</p>
+                <p>This cost-effective solution can bridge the gap until you can sustain a full-time CFO. In the
+                    meantime,
+                    there
+                    are
+                    no commitments, no recruitment fees, fixed retainers, or costly cancellation fees. Only the
+                    professional
+                    expertise you need when you need it.</p>
+            </div>
+        </div>
+        <a href="/contact" class="btn primary">Let's Get Started!</a>
+    </div>
 </section>
 <section id="homeServices" class="sectionbg">
-    <div class="sectionbgWrapper">
-        <h2 class="w-border">Services</h2>
-        {{template "flipCards" .}}
+    <div class="content content_bg">
+        <div class="contentSection">
+            <h2 class="w-border">Services</h2>
+            {{template "flipCards" .}}
+        </div>
     </div>
 </section>
 <section id="homeAbout">
-    {{template "myStory" .}}
-    <a href="/about" class="btn secondary">Learn More</a>
+    <div class="content">
+        {{template "myStory" .}}
+        <a href="/about" class="btn secondary">Learn More</a>
+    </div>
 </section>
 <section id="homeContact">
-    <div class="sectionbgWrapper">
-        {{template "contactIntroSection" .}}
-        {{template "contactFormSection" .}}
+    <div class="content content_bg">
+        {{template "contactSection" .}}
     </div>
 </section>
 {{end}}
