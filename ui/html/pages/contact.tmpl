@@ -1,11 +1,10 @@
 {{define "title"}}Contact{{end}}
 
 {{define "main"}}
-<div id="headBanner" class="contact">
+<section id="contact" class="headBanner">
     <h1>Contact</h1>
-</div>
-<section id="contactForm">
-    {{template "contactIntroSection" .}}
-    {{template "contactFormSection" .}}
+</section>
+<section id="contactSection" class="inside">
+    {{template "contactSection" .}}
 </section>
 {{end}}
