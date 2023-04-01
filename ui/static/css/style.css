@@ -82,6 +82,10 @@ p:last-child {
 
 img {
     width: 100%;
+}
+
+img.img_full {
+    width: 100%;
     height: 100%;
     object-fit: cover;
 }
@@ -215,13 +219,14 @@ input[type="submit"] {
 /* Mobile navigation */
 .navigation {
     background: var(--dark-blue);
-    display: flex;
-    justify-content: space-between;
     padding: 10px 20px;
-    align-items: center;
     z-index: 2;
-    position: sticky;
-    top: 0;
+}
+
+.navigation .content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 a.brand img {
@@ -284,6 +289,10 @@ nav ul li a:visited:not(:only-child):after {
 @media only screen and (min-width: 60em) {
     button.nav-mobile {
         display: none;
+    }
+
+    a.brand img {
+        width: 8em;
     }
 
     nav ul {
@@ -450,6 +459,13 @@ nav ul li a:visited:not(:only-child):after {
     background-repeat: no-repeat;
 }
 
+#homeBanner .content {
+    height: 100%;
+    justify-content: end;
+    align-items: end;
+    padding: 0 20px;
+}
+
 #curve {
     position: absolute;
     bottom: -5px;
@@ -461,36 +477,54 @@ nav ul li a:visited:not(:only-child):after {
 }
 
 .img-overlay {
-    position: absolute;
+    position: relative;
     width: 50%;
-    right: 20px;
-    bottom: 18px;
+    bottom: 5px;
     background-color: rgb(255 255 255 / 80%);
     padding: 10px 10px 0;
     z-index: 0;
 }
 
-@media only screen and (min-width: 60em) {
+@media only screen and (min-width: 40em) {
     #homeBanner {
         height: 75vh;
     }
 
-    .jumbotron .content {
-        align-items: end;
-        height: 100%;
-        justify-content: end;
+    .img-overlay {
+        width: 40%;
+        bottom: 30px;
     }
+}
+
+@media only screen and (min-width: 60em) {
 
     .img-overlay {
-        width: 35%;
-        bottom: 45px;
-        padding: 40px 40px 0;
+        width: 30%;
+        bottom: 60px;
+        padding: 20px 20px 0;
     }
 }
 
 @media only screen and (min-width: 75em) {
     #homeBanner {
         height: 85vh;
+    }
+
+    .img-overlay {
+        padding: 40px 40px 0;
+    }
+}
+
+@media only screen and (min-width: 100em) {
+    .img-overlay {
+        width: 50%;
+        bottom: 70px;
+    }
+}
+
+@media only screen and (min-width: 2900px) {
+    .img-overlay {
+        bottom: 160px;
     }
 }
 
@@ -538,6 +572,17 @@ section#homeIntro {
 #services.headBanner::before,
 #homeServices::before {
     background-image: url('../img/LowRes_shutterstock_1579484785.jpg');
+}
+
+@media only screen and (min-width: 60em) {
+    #serviceDesc .content {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    #serviceDesc .content h2 {
+        font-size: var(--h3);
+    }
 }
 
 /* Contact */
