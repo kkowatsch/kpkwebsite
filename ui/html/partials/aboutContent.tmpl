@@ -1,0 +1,55 @@
+{{define "aboutContent"}}
+<img src="../static/img/LowRes_shutterstock_1233294022.jpg" alt="Placeholder image for now...">
+<div class="aboutContent">
+    <div id="myStory" class="contentSection">
+        <h2 class="w-border">My Story</h2>
+        <div class="paraWrap">
+            <p>
+                I’m a senior-level executive with more than 25 years of experience in finance, administration, IT, and
+                human
+                resource across multiple industries in both private and public sectors, including:
+            </p>
+            <ul>
+                <li>technology</li>
+                <li>health care,</li>
+                <li>lease/asset financing</li>
+                <li>manufacturing</li>
+                <li>warehouse/distribution</li>
+            </ul>
+            <p>
+                Whether working with small entrepreneurial organizations or large multi-national enterprises, I have a
+                proven track-record of improving operations, impacting business growth, and maximizing profits so that
+                businesses meet their financial goals.
+            </p>
+        </div>
+    </div>
+    {{if eq .Page.Title "About"}}
+    <div id="myApproach" class="contentSection">
+        <h2 class="w-border">My Approach</h2>
+        <div class="paraWrap">
+            <p>
+                No one knows your business better than you do. That’s why I always begin by listening and asking
+                questions
+                to get a better understanding of you and your unique needs.Those insights allow me to provide
+                clear,
+                step-by-step solutions that deliver superior results for your business.
+            </p>
+            <p>
+                I also don’t sit by the sidelines. Instead, I become part of your team, bringing my diverse
+                professional
+                experience and network of resources to your organization.Depending on your needs, I can scale
+                time
+                up or
+                down, and can work in-person at your office or remotely.
+            </p>
+            <p>
+                My goal is to help you achieve yours.
+            </p>
+        </div>
+    </div>
+    {{end}}
+    {{if eq .Page.Title "Home"}}
+    <a href="/about" id="myStorybtn" class="btn secondary">Learn More</a>
+    {{end}}
+</div>
+{{end}}

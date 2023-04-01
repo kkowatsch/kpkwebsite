@@ -14,6 +14,7 @@ var Files embed.FS
 type templateData struct {
 	CurrentYear int
 	Form        any
+	Page        any
 }
 
 func newTemplateCache() (map[string]*template.Template, error) {

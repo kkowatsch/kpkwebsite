@@ -55,7 +55,8 @@ section {
     gap: 10px;
 }
 
-.content {
+.content,
+.aboutContent {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -81,14 +82,27 @@ p:last-child {
 
 img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 @media only screen and (min-width: 60em) {
+    section {
+        padding: 80px 20px;
+    }
+
     .content {
         max-width: 1080px;
         margin: 0 auto;
-        padding: 80px 20px;
         width: 100%;
+    }
+
+    .contentSection {
+        gap: 20px;
+    }
+
+    section.inside {
+        padding: 40px 20px;
     }
 }
 
@@ -146,6 +160,7 @@ p {
 .w-border {
     border-bottom: 3px solid var(--light-blue);
     width: fit-content;
+    padding-bottom: 15px;
 }
 
 /* Buttons */
@@ -301,7 +316,7 @@ nav ul li a:visited:not(:only-child):after {
 }
 
 .headBanner {
-    height: 200px;
+    height: 125px;
     display: flex;
     align-items: start;
     justify-content: center;
@@ -333,6 +348,18 @@ nav ul li a:visited:not(:only-child):after {
     .headBanner,
     .sectionbg {
         padding: 80px 20px;
+    }
+
+    .headBanner {
+        height: 250px;
+    }
+
+    .headBanner::before {
+        background-position: center 78%;
+    }
+
+    .content_bg {
+        padding: 40px;
     }
 }
 
@@ -472,19 +499,39 @@ section#homeIntro {
     padding-top: 20px;
 }
 
-/* Home - Services Section */
-#homeServices .contentSection {
-    align-items: center;
-}
-
 /* Home - Contact Section */
 #homeContact {
     background-color: var(--teal);
 }
 
+/* Home - Media Queries */
+/* Mobile */
+@media only screen and (min-width: 60em) {
+    section#homeIntro {
+        padding-top: 60px;
+    }
+}
+
+/* Desktop */
+@media only screen and (max-width: 60em) {
+    #homeServices .contentSection {
+        align-items: center;
+    }
+}
+
 /* About */
 #about.headBanner::before {
     background-image: url('../img/LowRes_shutterstock_572692948.jpg');
+}
+
+@media only screen and (min-width: 60em) {
+
+    #mainAbout .content,
+    #homeAbout .content {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 40px;
+    }
 }
 
 /* Services */
