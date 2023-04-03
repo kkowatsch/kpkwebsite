@@ -7,20 +7,30 @@ import (
 	"kaykodesigns.kpkaccounting.net/internal/validator"
 )
 
+type PageParams struct {
+	Title string
+}
+
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	data := app.newTemplateData(r)
+	data.Page = PageParams{Title: "Home"}
+
 	app.render(w, http.StatusOK, "home.tmpl", data)
 
 }
 
 func (app *application) about(w http.ResponseWriter, r *http.Request) {
 	data := app.newTemplateData(r)
+	data.Page = PageParams{Title: "About"}
+
 	app.render(w, http.StatusOK, "about.tmpl", data)
 
 }
 
 func (app *application) services(w http.ResponseWriter, r *http.Request) {
 	data := app.newTemplateData(r)
+	data.Page = PageParams{Title: "Services"}
+
 	app.render(w, http.StatusOK, "services.tmpl", data)
 
 }
@@ -35,8 +45,9 @@ type contactForm struct {
 }
 
 func (app *application) contact(w http.ResponseWriter, r *http.Request) {
-
 	data := app.newTemplateData(r)
+	data.Page = PageParams{Title: "Contact"}
+
 	app.render(w, http.StatusOK, "contact.tmpl", data)
 }
 
