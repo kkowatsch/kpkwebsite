@@ -24,6 +24,11 @@ for (var i = 0; i < navLinks.length; i++) {
     var link = navLinks[i];
     if (link.getAttribute("href") == window.location.pathname) {
         link.classList.add("active");
+
+        var active = document.querySelector(".active");
+        var activeParent = active.parentElement.parentElement.previousElementSibling;
+
+        activeParent.classList.add("active")
         break;
     }
 }
