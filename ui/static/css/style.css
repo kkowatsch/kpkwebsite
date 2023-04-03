@@ -49,26 +49,65 @@ main {
 }
 
 section {
-    padding: 20px 20px;
+    padding: 40px 20px;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-/* section:last-child {
-    padding-top: 0;
-} */
+.content,
+.aboutContent {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contentSection {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+section.inside {
+    padding: 20px;
+}
+
+ul {
+    margin-top: 0;
+}
 
 p:last-child {
     margin-bottom: 0;
 }
 
-ul {
-    margin-bottom: 0;
-}
-
 img {
     width: 100%;
+}
+
+img.img_full {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media only screen and (min-width: 60em) {
+    section {
+        padding: 80px 20px;
+    }
+
+    .content {
+        max-width: 1080px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .contentSection {
+        gap: 20px;
+    }
+
+    section.inside {
+        padding: 40px 20px;
+    }
 }
 
 /* Fonts */
@@ -125,6 +164,7 @@ p {
 .w-border {
     border-bottom: 3px solid var(--light-blue);
     width: fit-content;
+    padding-bottom: 15px;
 }
 
 /* Buttons */
@@ -179,13 +219,14 @@ input[type="submit"] {
 /* Mobile navigation */
 .navigation {
     background: var(--dark-blue);
-    display: flex;
-    justify-content: space-between;
     padding: 10px 20px;
-    align-items: center;
     z-index: 2;
-    position: sticky;
-    top: 0;
+}
+
+.navigation .content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 a.brand img {
@@ -245,9 +286,13 @@ nav ul li a:visited:not(:only-child):after {
     cursor: pointer;
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 60em) {
     button.nav-mobile {
         display: none;
+    }
+
+    a.brand img {
+        width: 8em;
     }
 
     nav ul {
@@ -273,20 +318,20 @@ nav ul li a:visited:not(:only-child):after {
 /* Components */
 
 /* Page Banner */
-#headBanner,
+.headBanner,
 .sectionbg {
     position: relative;
     width: 100%;
-    padding: 40px 20px;
 }
 
-#headBanner {
-    height: 200px;
+.headBanner {
+    height: 125px;
     display: flex;
-    align-items: center;
+    align-items: start;
+    justify-content: center;
 }
 
-#headBanner::before,
+.headBanner::before,
 .sectionbg::before {
     content: "";
     background-size: cover;
@@ -301,17 +346,40 @@ nav ul li a:visited:not(:only-child):after {
     z-index: -1;
 }
 
-.sectionbgWrapper {
+.content_bg {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    justify-content: center;
     border-radius: var(--border-radius);
 }
 
+@media only screen and (min-width: 60em) {
+
+    .headBanner,
+    .sectionbg {
+        padding: 80px 20px;
+    }
+
+    .headBanner {
+        height: 250px;
+    }
+
+    .headBanner::before {
+        background-position: center 78%;
+    }
+
+    .content_bg {
+        padding: 40px;
+    }
+}
+
 /* Flip Cards */
+.flipCardWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
     background-color: transparent;
@@ -371,6 +439,12 @@ nav ul li a:visited:not(:only-child):after {
     text-align: left;
 }
 
+@media only screen and (min-width: 60em) {
+    .flipCardWrapper {
+        flex-direction: row;
+    }
+}
+
 /* Pages */
 /* Home - Jumbotron */
 #homeBanner {
@@ -385,9 +459,16 @@ nav ul li a:visited:not(:only-child):after {
     background-repeat: no-repeat;
 }
 
+#homeBanner .content {
+    height: 100%;
+    justify-content: end;
+    align-items: end;
+    padding: 0 20px;
+}
+
 #curve {
     position: absolute;
-    bottom: 0;
+    bottom: -5px;
     width: 100%;
 }
 
@@ -396,33 +477,115 @@ nav ul li a:visited:not(:only-child):after {
 }
 
 .img-overlay {
-    position: absolute;
+    position: relative;
     width: 50%;
-    right: 20px;
-    bottom: 18px;
+    bottom: 5px;
     background-color: rgb(255 255 255 / 80%);
     padding: 10px 10px 0;
     z-index: 0;
 }
 
-/* Home - Services Section */
-#homeServices .sectionbgWrapper {
-    align-items: center;
+@media only screen and (min-width: 40em) {
+    #homeBanner {
+        height: 75vh;
+    }
+
+    .img-overlay {
+        width: 40%;
+        bottom: 30px;
+    }
 }
 
+@media only screen and (min-width: 60em) {
+
+    .img-overlay {
+        width: 30%;
+        bottom: 60px;
+        padding: 20px 20px 0;
+    }
+}
+
+@media only screen and (min-width: 75em) {
+    #homeBanner {
+        height: 85vh;
+    }
+
+    .img-overlay {
+        padding: 40px 40px 0;
+    }
+}
+
+@media only screen and (min-width: 100em) {
+    .img-overlay {
+        width: 50%;
+        bottom: 70px;
+    }
+}
+
+@media only screen and (min-width: 2900px) {
+    .img-overlay {
+        bottom: 160px;
+    }
+}
+
+/* Home - Intro */
+section#homeIntro {
+    padding-top: 20px;
+}
+
+/* Home - Contact Section */
+#homeContact {
+    background-color: var(--teal);
+}
+
+/* Home - Media Queries */
+/* Mobile */
+@media only screen and (min-width: 60em) {
+    section#homeIntro {
+        padding-top: 60px;
+    }
+}
+
+/* Desktop */
+@media only screen and (max-width: 60em) {
+    #homeServices .contentSection {
+        align-items: center;
+    }
+}
 
 /* About */
-#headBanner.about::before {
+#about.headBanner::before {
     background-image: url('../img/LowRes_shutterstock_572692948.jpg');
 }
 
+@media only screen and (min-width: 60em) {
+
+    #mainAbout .content,
+    #homeAbout .content {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 40px;
+    }
+}
+
 /* Services */
-#headBanner.services::before,
+#services.headBanner::before,
 #homeServices::before {
     background-image: url('../img/LowRes_shutterstock_1579484785.jpg');
 }
 
+@media only screen and (min-width: 60em) {
+    #serviceDesc .content {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    #serviceDesc .content h2 {
+        font-size: var(--h3);
+    }
+}
+
 /* Contact */
-#homeContact {
-    background-color: var(--teal);
+#contact.headBanner::before {
+    background-image: url('../img/LowRes_shutterstock_1491349139.jpg');
 }
