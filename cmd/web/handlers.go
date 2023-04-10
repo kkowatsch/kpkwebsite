@@ -58,17 +58,18 @@ func (app *application) ContactFormPost(w http.ResponseWriter, r *http.Request) 
 		return
 	}
 
-	form.CheckField(validator.NotBlank(form.Name), "name", "This field cannot be blank.")
-	form.CheckField(validator.NotBlank(form.Email), "email", "This field cannot be blank.")
-	form.CheckField(validator.Matches(form.Email, validator.Emailrx), "email", "This field must be a valid email address.")
-	form.CheckField(validator.NotBlank(form.Phone), "phone", "This field cannot be blank.")
-	form.CheckField(validator.Matches(form.Phone, validator.Phonerx), "phone", "This field must be a valid email address.")
-	form.CheckField(validator.NotBlank(form.Content), "content", "This field cannot be blank.")
+	form.CheckField(validator.NotBlank(form.Name), "name", "This field requires at least one non-space character.")
+	form.CheckField(validator.NotBlank(form.Email), "email", "This field requires at least one non-space character.")
+	form.CheckField(validator.Matches(form.Email, validator.Emailrx), "email", "Please enter a valid email address ie. jdoe@abc.com")
+	form.CheckField(validator.NotBlank(form.Phone), "phone", "This field requires at least one non-space character.")
+	form.CheckField(validator.Matches(form.Phone, validator.Phonerx), "phone", "Please enter a valid phone number format ie. 123-456-7890")
+	form.CheckField(validator.NotBlank(form.Content), "content", "This field requires at least one non-space character.")
 
 	if !form.Valid() {
 		app.infoLog.Println("form not valid.")
 		data := app.newTemplateData(r)
 		data.Form = form
+		data.Page = PageParams{Title: "Contact"}
 		app.render(w, http.StatusUnprocessableEntity, "contact.tmpl", data)
 		return
 	}
