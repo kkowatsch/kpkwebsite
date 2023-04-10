@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
+	"github.com/go-mail/mail"
 	"kaykodesigns.kpkaccounting.net/internal/validator"
 )
 
@@ -36,6 +38,7 @@ func (app *application) services(w http.ResponseWriter, r *http.Request) {
 
 type contactForm struct {
 	Name                string `form:"name"`
+	Company             string `form:"company"`
 	Email               string `form:"email"`
 	Phone               string `form:"phone"`
 	Content             string `form:"content"`
@@ -48,6 +51,25 @@ func (app *application) contact(w http.ResponseWriter, r *http.Request) {
 	data.Form = contactForm{}
 
 	app.render(w, http.StatusOK, "contact.tmpl", data)
+}
+
+func (form *contactForm) Deliver() error {
+
+	// Email Header Details
+	email := mail.NewMessage()
+	email.SetHeader("To", "admin@example.com")
+	email.SetHeader("From", "server@example.com")
+	email.SetHeader("Reply-To", form.Email)
+	email.SetHeader("Subject", "New message via KPK Accounting Contact Form")
+
+	// Email Body
+	body := fmt.Sprintf("Hello,\n\nA new contact form has been submitted on your website.\n\nName: %s\nCompany Name: %s\nEmail Address: %s\nPhone Number: %s\nMessage: %s\n\nThank you,\nYour Website", form.Name, form.Company, form.Email, form.Phone, form.Content)
+	email.SetBody("text/plain", body)
+
+	username := "3ad614bc1d632e"
+	password := "9a4b9daec5ce98"
+
+	return mail.NewDialer("sandbox.smtp.mailtrap.io", 587, username, password).DialAndSend(email)
 }
 
 func (app *application) ContactFormPost(w http.ResponseWriter, r *http.Request) {
@@ -79,21 +101,15 @@ func (app *application) ContactFormPost(w http.ResponseWriter, r *http.Request) 
 	data.Page = PageParams{Title: "Confirmation"}
 	app.render(w, http.StatusOK, "confirmation.tmpl", data)
 
+	if err := form.Deliver(); err != nil {
+		app.errorLog.Println("There was an error submitting the form.")
+		app.errorLog.Print(err)
+		http.Error(w, "Sorry, something went wrong with submitting the form.", http.StatusInternalServerError)
+		return
+	}
+
+	app.infoLog.Println("Submitted")
 }
-
-// func (form *contactForm) Deliver() error {
-// 	email := mail.NewMessage()
-// 	email.SetHeader("To", "kayleigh.schlupp@gmail.com")
-// 	email.SetHeader("From", "kayleighkat_2@hotmail.com")
-// 	email.SetHeader("Reply-To", form.Email)
-// 	email.SetHeader("Subject", "New message via KPK Accounting Contact Form")
-// 	email.SetBody("text/plain", form.Content)
-
-// 	username := "kayleighkat_2@hotmail.com"
-// 	password := "2!BX6699!VickyRose"
-
-// 	return mail.NewDialer("smtp-mail.outlook.com", 587, username, password).DialAndSend(email)
-// }
 
 // func (app *application) contactFormPost(w http.ResponseWriter, r *http.Request) {
 // 	var form contactForm
