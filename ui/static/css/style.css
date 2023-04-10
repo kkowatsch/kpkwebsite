@@ -221,6 +221,7 @@ input[type="submit"] {
     background: var(--dark-blue);
     padding: 10px 20px;
     z-index: 2;
+    color: white;
 }
 
 .navigation .content {
@@ -313,6 +314,31 @@ nav ul li a:visited:not(:only-child):after {
         border-bottom: 2px solid var(--light-blue);
         background-color: transparent;
     }
+}
+
+/* Footer */
+.logoFooter {
+    width: 5em;
+}
+
+#footerNavigation>.content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.copyrightWrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btnGroup {
+    line-height: initial;
+}
+
+.btnGroup i {
+    font-size: 24px;
 }
 
 /* Components */

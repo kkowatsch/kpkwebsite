@@ -5,6 +5,8 @@ import (
 	"html/template"
 	"io/fs"
 	"path/filepath"
+	"strconv"
+	"time"
 
 	"kaykodesigns.kpkaccounting.net/ui"
 )
@@ -12,9 +14,16 @@ import (
 var Files embed.FS
 
 type templateData struct {
-	CurrentYear int
-	Form        any
-	Page        any
+	Form any
+	Page any
+}
+
+func copyrightYear() string {
+	return strconv.Itoa(time.Now().Year())
+}
+
+var functions = template.FuncMap{
+	"copyrightYear": copyrightYear,
 }
 
 func newTemplateCache() (map[string]*template.Template, error) {
@@ -33,7 +42,7 @@ func newTemplateCache() (map[string]*template.Template, error) {
 			page,
 		}
 
-		ts, err := template.ParseFS(ui.Files, patterns...)
+		ts, err := template.New(name).Funcs(functions).ParseFS(ui.Files, patterns...)
 		if err != nil {
 			return nil, err
 		}
