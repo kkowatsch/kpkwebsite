@@ -10,6 +10,7 @@
     --light-gray: rgb(71, 181, 255);
     --medium-gray: rgb(102, 102, 102);
     --hover: rgb(13, 81, 104);
+    --error: #882222;
 
     /* Fonts */
     --base-font-size: 16px;
@@ -259,7 +260,15 @@ textarea {
 
 i.fa-solid.fa-asterisk {
     font-size: 0.7em;
-    color: #882222;
+    color: var(--error);
+}
+
+.error {
+    color: white;
+    background-color: var(--error);
+    padding: 3px 8px;
+    font-weight: var(--font-weight-regular);
+    border-radius: var(--border-radius);
 }
 
 /* Navigation */
