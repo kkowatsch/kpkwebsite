@@ -1,25 +1,37 @@
 {{define "contactForm"}}
-<form id="contactFormSubmit" action="/contact" method="post" autocomplete="on">
+<form id="contactFormSubmit" action="/contact" method="POST" novalidate>
     <div class="label-input-group">
-        <label for="flname">First & Last Name<i class="fa-solid fa-asterisk"></i></label>
-        <input id="flname" type="text" name="name" placeholder="Please enter your full name..." required>
+        {{with .Form.FieldErrors.name}}
+        <p class="error">{{.}}</p>
+        {{end}}
+        <label for="name">Name<i class="fa-solid fa-asterisk"></i></label>
+        <input id="name" type="text" name="name" placeholder="Please enter your full name..." value="{{.}}">
     </div>
     <div class="label-input-group">
         <label for="cname">Company Name</label>
         <input id="cname" type="text" name="cname" placeholder="Please enter your company name...">
     </div>
     <div class="label-input-group">
+        {{with .Form.FieldErrors.Email}}
+        <p class="error">{{.}}</p>
+        {{end}}
         <label for="email">Email Address<i class="fa-solid fa-asterisk"></i></label>
-        <input id="email" type="email" name="email" placeholder="Please enter your email address..." required>
+        <input id="email" type="email" name="email" placeholder="Please enter your email address..." value="{{.}}">
     </div>
     <div class="label-input-group">
+        {{with .Form.FieldErrors.Phone}}
+        <p class="error">{{.}}</p>
+        {{end}}
         <label for="phone">Phone number<i class="fa-solid fa-asterisk"></i></label>
-        <input id="phone" type="tel" name="phone" placeholder="Please enter your phone number..." required>
+        <input id="phone" type="tel" name="phone" placeholder="Please enter your phone number..." value="{{.}}">
     </div>
     <div class="label-input-group">
+        {{with .Form.FieldErrors.Content}}
+        <p class="error">{{.}}</p>
+        {{end}}
         <label for="message-input">Message<i class="fa-solid fa-asterisk"></i></label>
         <textarea id="message-input" name="message" rows="8" cols="50"
-            placeholder="In a sentence or two, please describe the service we can assist you with." required></textarea>
+            placeholder="In a sentence or two, please describe the service we can assist you with.">{{.}}</textarea>
     </div>
     <button class="btn primary" type="submit" form="contactFormSubmit" value="Submit">Submit<i
             class="fa-solid fa-paper-plane"></i></button>
