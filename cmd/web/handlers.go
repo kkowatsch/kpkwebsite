@@ -28,7 +28,7 @@ func (form *contactForm) Deliver() error {
 	// Email Header Details
 	email := mail.NewMessage()
 	email.SetHeader("To", username)
-	email.SetHeader("From", "kpkaccounting@website.com")
+	email.SetHeader("From", "ken@kpkaccounting.com")
 	email.SetHeader("Reply-To", form.Email)
 	email.SetHeader("Subject", "New message via KPK Accounting Contact Form")
 
