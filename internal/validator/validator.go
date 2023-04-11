@@ -44,7 +44,7 @@ func NotBlank(value string) bool {
 }
 
 var Emailrx = regexp.MustCompile(`^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$`)
-var Phonerx = regexp.MustCompile(`^[(]?[0-9]{3}[)]?[ ,-]?[0-9]{3}[ ,-]?[0-9]{4}$`)
+var Phonerx = regexp.MustCompile(`^(?:\+?1[-.●]?)?\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$`)
 
 func Matches(value string, rx *regexp.Regexp) bool {
 	return rx.MatchString(value)
