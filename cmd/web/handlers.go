@@ -21,6 +21,24 @@ type contactForm struct {
 	validator.Validator `form:"-"`
 }
 
+func (form *contactForm) Deliver() error {
+	username := "***REMOVED***"
+	password := "***REMOVED***"
+
+	// Email Header Details
+	email := mail.NewMessage()
+	email.SetHeader("To", username)
+	email.SetHeader("From", "kpkaccounting@website.com")
+	email.SetHeader("Reply-To", form.Email)
+	email.SetHeader("Subject", "New message via KPK Accounting Contact Form")
+
+	// Email Body
+	body := fmt.Sprintf("Hello,\n\nA new contact form has been submitted on your website.\n\nName: %s\nCompany Name: %s\nEmail Address: %s\nPhone Number: %s\nMessage: %s\n\nThank you,\nYour Website", form.Name, form.Company, form.Email, form.Phone, form.Content)
+	email.SetBody("text/plain", body)
+
+	return mail.NewDialer("smtp.office365.com", 587, username, password).DialAndSend(email)
+}
+
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	data := app.newTemplateData(r)
 	data.Page = PageParams{Title: "Home"}
@@ -90,24 +108,6 @@ func (app *application) contact(w http.ResponseWriter, r *http.Request) {
 	data.Form = contactForm{}
 
 	app.render(w, http.StatusOK, "contact.tmpl", data)
-}
-
-func (form *contactForm) Deliver() error {
-	username := "3ad614bc1d632e"
-	password := "9a4b9daec5ce98"
-
-	// Email Header Details
-	email := mail.NewMessage()
-	email.SetHeader("To", "username@email.com")
-	email.SetHeader("From", form.Email)
-	email.SetHeader("Reply-To", form.Email)
-	email.SetHeader("Subject", "New message via KPK Accounting Contact Form")
-
-	// Email Body
-	body := fmt.Sprintf("Hello,\n\nA new contact form has been submitted on your website.\n\nName: %s\nCompany Name: %s\nEmail Address: %s\nPhone Number: %s\nMessage: %s\n\nThank you,\nYour Website", form.Name, form.Company, form.Email, form.Phone, form.Content)
-	email.SetBody("text/plain", body)
-
-	return mail.NewDialer("sandbox.smtp.mailtrap.io", 587, username, password).DialAndSend(email)
 }
 
 func (app *application) contactFormPost(w http.ResponseWriter, r *http.Request) {
