@@ -63,10 +63,6 @@ section {
     gap: 20px;
 }
 
-footer {
-    flex-shrink: 0;
-}
-
 .contentSection {
     display: flex;
     flex-direction: column;
