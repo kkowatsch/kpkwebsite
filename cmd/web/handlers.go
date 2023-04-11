@@ -54,20 +54,19 @@ func (app *application) contact(w http.ResponseWriter, r *http.Request) {
 }
 
 func (form *contactForm) Deliver() error {
+	username := "3ad614bc1d632e"
+	password := "9a4b9daec5ce98"
 
 	// Email Header Details
 	email := mail.NewMessage()
-	email.SetHeader("To", "admin@example.com")
-	email.SetHeader("From", "server@example.com")
+	email.SetHeader("To", "username@email.com")
+	email.SetHeader("From", form.Email)
 	email.SetHeader("Reply-To", form.Email)
 	email.SetHeader("Subject", "New message via KPK Accounting Contact Form")
 
 	// Email Body
 	body := fmt.Sprintf("Hello,\n\nA new contact form has been submitted on your website.\n\nName: %s\nCompany Name: %s\nEmail Address: %s\nPhone Number: %s\nMessage: %s\n\nThank you,\nYour Website", form.Name, form.Company, form.Email, form.Phone, form.Content)
 	email.SetBody("text/plain", body)
-
-	username := "3ad614bc1d632e"
-	password := "9a4b9daec5ce98"
 
 	return mail.NewDialer("sandbox.smtp.mailtrap.io", 587, username, password).DialAndSend(email)
 }
@@ -110,43 +109,3 @@ func (app *application) ContactFormPost(w http.ResponseWriter, r *http.Request) 
 
 	app.infoLog.Println("Submitted")
 }
-
-// func (app *application) contactFormPost(w http.ResponseWriter, r *http.Request) {
-// 	var form contactForm
-// 	err := app.decodePostForm(r, &form)
-// 	if err != nil {
-// 		app.errorLog.Println("Error decoding form for contactFormPost")
-// 		app.clientError(w, http.StatusBadRequest)
-// 		return
-// 	}
-
-// 	form.CheckField(validator.NotBlank(form.Fullname), "fullname", "Please enter your first and last name.")
-// 	form.CheckField(validator.Matches(form.Email, validator.Emailrx), "email", "Please enter a valid email address ie. johndoe@abc.com.")
-// 	form.CheckField(validator.Matches(form.Phone, validator.Phonerx), "phone", "Please enter a valid phone number format ie. 123-456-7890.")
-// 	form.CheckField(validator.NotBlank(form.Content), "content", "Please describe the service we can assist with.")
-
-// 	// if !form.Valid() {
-// 	// 	app.infoLog.Println("Contact form not valid.")
-// 	// 	data := app.newTemplateData(r)
-// 	// 	data.Form = form
-// 	// 	data.Page = PageParams{Title: "Contact"}
-// 	// 	app.render(w, http.StatusOK, "contact.tmpl", data)
-// 	// 	return
-// 	// }
-
-// 	data := app.newTemplateData(r)
-// 	data.Form = form
-// 	data.Page = PageParams{Title: "Contact"}
-// 	app.render(w, http.StatusOK, "contact.tmpl", data)
-
-// 	if err := form.Deliver(); err != nil {
-// 		app.errorLog.Println("There was an error submitting the form.")
-// 		app.errorLog.Print(err)
-// 		http.Error(w, "Sorry, something went wrong with submitting the form.", http.StatusInternalServerError)
-// 		return
-// 	}
-
-// 	http.Redirect(w, r, "confirmationTest.tmpl", http.StatusSeeOther)
-
-// 	app.infoLog.Println("Submitted")
-// }

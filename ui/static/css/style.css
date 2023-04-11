@@ -46,7 +46,7 @@ body {
 main {
     display: flex;
     flex-direction: column;
-    /* gap: 20px; */
+
 }
 
 section {
@@ -61,6 +61,10 @@ section {
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+footer {
+    flex-shrink: 0;
 }
 
 .contentSection {
@@ -89,6 +93,7 @@ img.img_full {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: 90%;
 }
 
 @media only screen and (min-width: 60em) {
