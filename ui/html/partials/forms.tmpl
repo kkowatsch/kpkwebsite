@@ -1,0 +1,39 @@
+{{define "contactForm"}}
+<div class="label-input-group">
+    <label for="name">Name<i class="fa-solid fa-asterisk"></i></label>
+    <input id="name" type="text" name="name" placeholder="Please enter your full name..." value="{{.Form.Name}}">
+    {{with .Form.FieldErrors.name}}
+    <div class="error">{{.}}</div>
+    {{end}}
+</div>
+<div class="label-input-group">
+    <label for="company">Company Name</label>
+    <input id="company" type="text" name="company" placeholder="Please enter your full name..."
+        value="{{.Form.Company}}">
+</div>
+<div class="label-input-group">
+    <label for="email">Email Address<i class="fa-solid fa-asterisk"></i></label>
+    <input id="email" type="email" name="email" placeholder="Please enter your email address..."
+        value="{{.Form.Email}}">
+    {{with .Form.FieldErrors.email}}
+    <div class="error">{{.}}</div>
+    {{end}}
+</div>
+<div class="label-input-group">
+    <label for="phone">Phone number<i class="fa-solid fa-asterisk"></i></label>
+    <input id="phone" type="tel" name="phone" placeholder="Please enter your phone number..." value="{{.Form.Phone}}">
+    {{with .Form.FieldErrors.phone}}
+    <div class="error">{{.}}</div>
+    {{end}}
+</div>
+<div class="label-input-group">
+    <label for="message-input">Message<i class="fa-solid fa-asterisk"></i></label>
+    <textarea id="message-input" name="content" rows="8" cols="50"
+        placeholder="In a sentence or two, please describe the service we can assist you with.">{{.Form.Content}}</textarea>
+    {{with .Form.FieldErrors.content}}
+    <div class="error">{{.}}</div>
+    {{end}}
+</div>
+<button class="btn primary" type="submit" form="contactFormSubmit" value="Submit">Submit<i
+        class="fa-solid fa-paper-plane"></i></button>
+{{end}}
