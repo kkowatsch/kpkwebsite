@@ -2,6 +2,7 @@
 :root {
     --border-radius: 4px;
     --border-size: 1px;
+    --box-shadow: 0 3px 6px rgb(6 40 61 / 30%);
 
     /* Brand Colours */
     --light-blue: rgb(96, 175, 255);
@@ -143,6 +144,7 @@ h2 {
     font-weight: var(--font-weight-medium);
     margin: 0;
     padding: 10px 0;
+    line-height: 2rem;
 }
 
 h3,
@@ -152,6 +154,7 @@ h6 {
     padding: 15px 0 5px;
     font-weight: var(--font-weight-regular);
     margin: 0;
+    line-height: 2rem;
 }
 
 p {
@@ -221,7 +224,7 @@ a:hover {
     background-color: transparent;
     color: var(--dark-blue);
     border: var(--border-size) solid var(--dark-blue);
-    box-shadow: 0px 1px 3px var(--medium-gray);
+    box-shadow: var(--box-shadow);
 }
 
 .btn.onlyText {
@@ -502,7 +505,7 @@ nav ul li a:visited:not(:only-child):after {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    box-shadow: 0 3px 6px rgb(6 40 61 / 30%);
+    box-shadow: var(--box-shadow);
     padding: 40px 20px;
 }
 
@@ -528,6 +531,18 @@ nav ul li a:visited:not(:only-child):after {
     .flipCardWrapper {
         flex-direction: row;
     }
+}
+
+/* Tiles */
+.tile {
+    padding: 10px 15px;
+    border: var(--border-size) solid var(--dark-blue);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.tile .w-border {
+    width: initial;
 }
 
 /* Pages */
@@ -659,6 +674,11 @@ section#homeIntro {
     background-image: url('../img/LowRes_shutterstock_1579484785.jpg');
 }
 
+#serviceDesc .content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
+}
+
 @media only screen and (min-width: 60em) {
     #serviceDesc .content {
         flex-direction: row;
@@ -666,7 +686,7 @@ section#homeIntro {
     }
 
     #serviceDesc .content h2 {
-        font-size: var(--h3);
+        font-size: var(--h4);
     }
 }
 
