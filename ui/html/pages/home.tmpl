@@ -19,27 +19,23 @@
 <section id="homeIntro">
     <div class="content">
         <div class="contentSection">
-            <h3>Can’t afford a full-time CFO but need help?</h3>
+            <h3>Need help but don’t need a fulltime CFO?</h3>
             <div class="paraWrap">
                 <p>A Fractional CFO can be the answer.</p>
             </div>
         </div>
         <div class="contentSection">
-            <h2 class="w-border">What is a FRACTIONAL CFO?</h2>
+            <h2 class="w-border">What is a Fractional CFO?</h2>
             <div class="paraWrap">
-                <p>A Fractional CFO is a part-time financial expert who offers their valuable expertise to small & large
-                    business
-                    owners, entrepreneurs and start-ups to help them develop scalable, long-term financial health.</p>
-                <p>This cost-effective solution can bridge the gap until you can sustain a full-time CFO. In the
-                    meantime,
-                    there
-                    are
-                    no commitments, no recruitment fees, fixed retainers, or costly cancellation fees. Only the
-                    professional
-                    expertise you need when you need it.</p>
+                <p>A Fractional CFO is a part-time financial professional who offers their valuable expertise to
+                    business owners, entrepreneurs and start-ups to help them develop scalable, long-term financial
+                    health.</p>
+                <p>This cost-effective solution can bridge the gap until you can sustain a full-time CFO or can help
+                    solve a challenge you face. There are no commitments, no recruitment fees, fixed retainers, or
+                    costly cancellation fees. Only the professional expertise you need when, you need it.</p>
             </div>
         </div>
-        <a href="/contact" class="btn primary">Let's Get Started!</a>
+        <a href="/contact" class="btn primary">Let's Get Started!<i class="fa-solid fa-angle-left"></i></a>
     </div>
 </section>
 <section id="homeServices" class="sectionbg">
@@ -57,7 +53,19 @@
 </section>
 <section id="homeContact">
     <div class="content content_bg">
-        {{template "contactSection" .}}
+        <h2 class="w-border">Get in Touch</h2>
+        <div class="btnGroup">
+            <a href="" target="_blank" rel="external nofollow noopener"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+        <div class="paraWrap">
+            <p>Let’s set up a time to chat. I can learn more about you and your business, tell you more about what I
+                do
+                and how I can help. </p>
+            <p>Simply fill out the form below or call <a href="tel:16475455197">647-545-5197</a>.</p>
+        </div>
+        <form id="contactFormSubmit" action="/" method="POST" novalidate>
+            {{template "contactForm" .}}
+        </form>
     </div>
 </section>
 {{end}}

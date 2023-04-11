@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"net/http"
 	"runtime/debug"
-	"time"
 
 	"github.com/go-playground/form"
 )
@@ -26,9 +25,7 @@ func (app *application) notFound(w http.ResponseWriter) {
 }
 
 func (app *application) newTemplateData(r *http.Request) *templateData {
-	return &templateData{
-		CurrentYear: time.Now().Year(),
-	}
+	return &templateData{}
 }
 
 func (app *application) render(w http.ResponseWriter, status int, page string, data *templateData) {
