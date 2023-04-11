@@ -20,6 +20,7 @@ func (app *application) routes() http.Handler {
 
 	dynamic := alice.New(app.sessionManager.LoadAndSave)
 	router.Handler(http.MethodGet, "/", dynamic.ThenFunc(app.home))
+	router.Handler(http.MethodPost, "/", dynamic.ThenFunc(app.homeContactFormPost))
 	router.Handler(http.MethodGet, "/about", dynamic.ThenFunc(app.about))
 	router.Handler(http.MethodGet, "/services", dynamic.ThenFunc(app.services))
 	router.Handler(http.MethodGet, "/contact", dynamic.ThenFunc(app.contact))
