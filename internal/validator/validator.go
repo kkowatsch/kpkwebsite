@@ -43,8 +43,8 @@ func NotBlank(value string) bool {
 	return strings.TrimSpace(value) != ""
 }
 
-var Emailrx = regexp.MustCompile(`[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,63}$`)
-var Phonerx = regexp.MustCompile(`\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$`)
+var Emailrx = regexp.MustCompile(`^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$`)
+var Phonerx = regexp.MustCompile(`^(?:\+?1[-.●]?)?\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$`)
 
 func Matches(value string, rx *regexp.Regexp) bool {
 	return rx.MatchString(value)
