@@ -20,7 +20,12 @@ type application struct {
 }
 
 func main() {
-	addr := flag.String("addr", ":4000", "HTTP network address")
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = ":4000" // Default port if not specified
+	}
+
+	addr := flag.String("addr", port, "HTTP network address")
 
 	flag.Parse()
 
