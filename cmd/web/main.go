@@ -22,10 +22,10 @@ type application struct {
 func main() {
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = ":4000" // Default port if not specified
+		port = "4000" // Default port if not specified
 	}
 
-	addr := flag.String("addr", port, "HTTP network address")
+	addr := flag.String("addr", ":"+port, "HTTP network address")
 
 	flag.Parse()
 
