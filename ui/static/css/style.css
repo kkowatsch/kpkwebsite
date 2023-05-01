@@ -658,6 +658,11 @@ section#homeIntro {
     background-image: url('../img/LowRes_shutterstock_572692948.jpg');
 }
 
+.mystory.title {
+    padding-top: 0;
+    font-size: var(--h4);
+}
+
 @media only screen and (min-width: 60em) {
 
     #mainAbout .content,
