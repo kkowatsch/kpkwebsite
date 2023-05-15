@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a minimal static website showcasing the services provided by KPK Accounting LTD. The production site can be found at **www.kpkaccounting.com**
+This is a minimal static website showcasing the services provided by KPK Accounting LTD.
 
 Languages used:
 - Golang
