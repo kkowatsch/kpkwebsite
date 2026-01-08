@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/go-mail/mail"
 	"kaykodesigns.kpkaccounting.net/internal/validator"
@@ -23,13 +24,13 @@ type contactForm struct {
 }
 
 func (form *contactForm) Deliver() error {
-	username := "ken@kpkaccounting.com"
-	password := "20Springhill23$"
+	username := os.Getenv("SMTP_USERNAME")
+	password := os.Getenv("SMTP_PASSWORD")
 
 	// Email Header Details
 	email := mail.NewMessage()
 	email.SetHeader("To", username)
-	email.SetHeader("From", "ken@kpkaccounting.com")
+	email.SetHeader("From", username)
 	email.SetHeader("Reply-To", form.Email)
 	email.SetHeader("Subject", "New message via KPK Accounting Contact Form")
 
@@ -37,7 +38,7 @@ func (form *contactForm) Deliver() error {
 	body := fmt.Sprintf("Hello,\n\nA new contact form has been submitted on your website.\n\nName: %s\nCompany Name: %s\nEmail Address: %s\nPhone Number: %s\nMessage: %s\n\nThank you,\nYour Website", form.Name, form.Company, form.Email, form.Phone, form.Content)
 	email.SetBody("text/plain", body)
 
-	return mail.NewDialer("smtp.office365.com", 587, username, password).DialAndSend(email)
+	return mail.NewDialer("smtp.gmail.com", 587, username, password).DialAndSend(email)
 }
 
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
