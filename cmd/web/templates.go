@@ -14,8 +14,9 @@ import (
 var Files embed.FS
 
 type templateData struct {
-	Form any
-	Page any
+	Form      any
+	Page      any
+	CSRFToken string
 }
 
 func copyrightYear() string {

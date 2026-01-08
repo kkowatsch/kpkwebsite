@@ -1,6 +1,8 @@
 package validator
 
 import (
+	"crypto/rand"
+	"encoding/hex"
 	"regexp"
 	"strings"
 )
@@ -48,4 +50,14 @@ var Phonerx = regexp.MustCompile(`^(?:\+?1[-.●]?)?\(?([0-9]{3})\)?[-.●]?([0-
 
 func Matches(value string, rx *regexp.Regexp) bool {
 	return rx.MatchString(value)
+}
+
+// GenerateCSRFToken generates a random CSRF token
+func GenerateCSRFToken() (string, error) {
+	b := make([]byte, 32)
+	_, err := rand.Read(b)
+	if err != nil {
+		return "", err
+	}
+	return hex.EncodeToString(b), nil
 }

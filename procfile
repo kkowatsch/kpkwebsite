@@ -1,1 +1,1 @@
-web: kpkwebsite
+web: go run ./cmd/web/

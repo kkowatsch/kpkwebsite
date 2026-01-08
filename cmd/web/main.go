@@ -6,8 +6,10 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/alexedwards/scs/v2"
+	"github.com/alexedwards/scs/v2/memstore"
 	"github.com/go-playground/form"
 	"github.com/joho/godotenv"
 )
@@ -43,6 +45,15 @@ func main() {
 	formDecoder := form.NewDecoder()
 
 	sessionManager := scs.New()
+	sessionManager.Store = memstore.New()
+	// Configure session security settings
+	sessionManager.Lifetime = 24 * time.Hour
+	sessionManager.IdleTimeout = 20 * time.Minute
+	// Allow HTTP for development/testing, HTTPS for production
+	isProduction := os.Getenv("ENVIRONMENT") == "production"
+	sessionManager.Cookie.Secure = isProduction // true in production, false for localhost testing
+	sessionManager.Cookie.HttpOnly = true
+	sessionManager.Cookie.SameSite = http.SameSiteLaxMode
 
 	app := &application{
 		errorLog:       errorLog,
@@ -53,9 +64,12 @@ func main() {
 	}
 
 	srv := &http.Server{
-		Addr:     *addr,
-		ErrorLog: errorLog,
-		Handler:  app.routes(),
+		Addr:         *addr,
+		ErrorLog:     errorLog,
+		Handler:      app.routes(),
+		IdleTimeout:  time.Minute,
+		ReadTimeout:  5 * time.Second,
+		WriteTimeout: 10 * time.Second,
 	}
 
 	infoLog.Printf("Starting server on %s", *addr)

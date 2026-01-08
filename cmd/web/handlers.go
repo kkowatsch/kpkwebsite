@@ -50,6 +50,15 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) homeContactFormPost(w http.ResponseWriter, r *http.Request) {
+	// Verify CSRF token
+	expectedToken := app.sessionManager.GetString(r.Context(), "csrf_token")
+	submittedToken := r.PostFormValue("csrf_token")
+
+	if submittedToken != expectedToken || expectedToken == "" {
+		app.clientError(w, http.StatusForbidden)
+		return
+	}
+
 	var form contactForm
 	err := app.decodePostForm(r, &form)
 	if err != nil {
@@ -65,7 +74,6 @@ func (app *application) homeContactFormPost(w http.ResponseWriter, r *http.Reque
 	form.CheckField(validator.NotBlank(form.Content), "content", "This field requires at least one non-space character.")
 
 	if !form.Valid() {
-		app.infoLog.Println("form not valid.")
 		data := app.newTemplateData(r)
 		data.Form = form
 		data.Page = PageParams{Title: "Home", Description: "The KPK Accounting Inc. home page with quick highlights of the services provided, the story of KPK's CEO and quick access for submitting inquiries through the contact form."}
@@ -80,12 +88,10 @@ func (app *application) homeContactFormPost(w http.ResponseWriter, r *http.Reque
 
 	if err := form.Deliver(); err != nil {
 		app.errorLog.Println("There was an error submitting the form.")
-		app.errorLog.Print(err)
-		http.Error(w, "Sorry, something went wrong with submitting the form.", http.StatusInternalServerError)
+		// Don't log the error details to prevent credential leakage
+		app.infoLog.Println("Failed to deliver email for contact form submission")
 		return
 	}
-
-	app.infoLog.Println("Submitted")
 }
 
 func (app *application) about(w http.ResponseWriter, r *http.Request) {
@@ -113,6 +119,15 @@ func (app *application) contact(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) contactFormPost(w http.ResponseWriter, r *http.Request) {
+	// Verify CSRF token
+	expectedToken := app.sessionManager.GetString(r.Context(), "csrf_token")
+	submittedToken := r.PostFormValue("csrf_token")
+
+	if submittedToken != expectedToken || expectedToken == "" {
+		app.clientError(w, http.StatusForbidden)
+		return
+	}
+
 	var form contactForm
 	err := app.decodePostForm(r, &form)
 	if err != nil {
@@ -128,7 +143,6 @@ func (app *application) contactFormPost(w http.ResponseWriter, r *http.Request) 
 	form.CheckField(validator.NotBlank(form.Content), "content", "This field requires at least one non-space character.")
 
 	if !form.Valid() {
-		app.infoLog.Println("form not valid.")
 		data := app.newTemplateData(r)
 		data.Form = form
 		data.Page = PageParams{Title: "Contact", Description: "The KPK Accounting Inc. contact form where clients can easily connect with KPK Accounting regarding financial inquiries."}
@@ -143,8 +157,8 @@ func (app *application) contactFormPost(w http.ResponseWriter, r *http.Request) 
 
 	if err := form.Deliver(); err != nil {
 		app.errorLog.Println("There was an error submitting the form.")
-		app.errorLog.Print(err)
-		http.Error(w, "Sorry, something went wrong with submitting the form.", http.StatusInternalServerError)
+		// Don't log the error details to prevent credential leakage
+		app.infoLog.Println("Failed to deliver email for contact form submission")
 		return
 	}
 

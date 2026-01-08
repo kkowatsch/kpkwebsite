@@ -8,6 +8,7 @@ import (
 	"runtime/debug"
 
 	"github.com/go-playground/form"
+	"kaykodesigns.kpkaccounting.net/internal/validator"
 )
 
 func (app *application) serverError(w http.ResponseWriter, err error) {
@@ -25,7 +26,22 @@ func (app *application) notFound(w http.ResponseWriter) {
 }
 
 func (app *application) newTemplateData(r *http.Request) *templateData {
-	return &templateData{}
+	// Get or create CSRF token from session
+	token := app.sessionManager.GetString(r.Context(), "csrf_token")
+
+	if token == "" {
+		// Generate new token if none exists
+		var err error
+		token, err = validator.GenerateCSRFToken()
+		if err != nil {
+			app.errorLog.Println("failed to generate CSRF token:", err)
+		}
+		if token != "" {
+			// Store token in session
+			app.sessionManager.Put(r.Context(), "csrf_token", token)
+		}
+	}
+	return &templateData{CSRFToken: token}
 }
 
 func (app *application) render(w http.ResponseWriter, status int, page string, data *templateData) {
