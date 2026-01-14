@@ -1,0 +1,8 @@
+.env
+kpkwebsite
+web
+*.exe
+*.dll
+*.so
+*.dylib
+MAILGUN_SETUP.md

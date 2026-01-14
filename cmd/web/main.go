@@ -9,6 +9,7 @@ import (
 
 	"github.com/alexedwards/scs/v2"
 	"github.com/go-playground/form"
+	"github.com/joho/godotenv"
 )
 
 type application struct {
@@ -20,6 +21,8 @@ type application struct {
 }
 
 func main() {
+	godotenv.Load()
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "4000" // Default port if not specified
