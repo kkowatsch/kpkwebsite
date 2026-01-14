@@ -1,6 +1,8 @@
 .env
-kpkwebsiteweb
+kpkwebsite
+web
 *.exe
 *.dll
 *.so
-*.dylibMAILGUN_SETUP.md
+*.dylib
+MAILGUN_SETUP.md
