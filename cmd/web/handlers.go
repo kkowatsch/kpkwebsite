@@ -23,13 +23,13 @@ type contactForm struct {
 }
 
 func (form *contactForm) Deliver() error {
-	username := "***REMOVED***"
-	password := "***REMOVED***"
+	username := "ken@kpkaccounting.com"
+	password := "20Springhill23$"
 
 	// Email Header Details
 	email := mail.NewMessage()
 	email.SetHeader("To", username)
-	email.SetHeader("From", "***REMOVED***")
+	email.SetHeader("From", "ken@kpkaccounting.com")
 	email.SetHeader("Reply-To", form.Email)
 	email.SetHeader("Subject", "New message via KPK Accounting Contact Form")
 
