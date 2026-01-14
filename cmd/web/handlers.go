@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/go-mail/mail"
+	"kaykodesigns.kpkaccounting.net/internal/email"
 	"kaykodesigns.kpkaccounting.net/internal/validator"
 )
 
@@ -23,22 +23,15 @@ type contactForm struct {
 	validator.Validator `form:"-"`
 }
 
-func (form *contactForm) Deliver() error {
+func (form *contactForm) Deliver(emailService email.EmailService) error {
 	username := os.Getenv("SMTP_USERNAME")
-	password := os.Getenv("SMTP_PASSWORD")
 
 	// Email Header Details
-	email := mail.NewMessage()
-	email.SetHeader("To", username)
-	email.SetHeader("From", username)
-	email.SetHeader("Reply-To", form.Email)
-	email.SetHeader("Subject", "New message via KPK Accounting Contact Form")
-
-	// Email Body
 	body := fmt.Sprintf("Hello,\n\nA new contact form has been submitted on your website.\n\nName: %s\nCompany Name: %s\nEmail Address: %s\nPhone Number: %s\nMessage: %s\n\nThank you,\nYour Website", form.Name, form.Company, form.Email, form.Phone, form.Content)
-	email.SetBody("text/plain", body)
 
-	return mail.NewDialer("smtp.gmail.com", 587, username, password).DialAndSend(email)
+	subject := "New message via KPK Accounting Contact Form"
+
+	return emailService.Send(username, subject, body)
 }
 
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
@@ -78,7 +71,15 @@ func (app *application) homeContactFormPost(w http.ResponseWriter, r *http.Reque
 	data.Page = PageParams{Title: "Confirmation", Description: "This page is visible because an inquiry through the contact form has been submitted to KPK Accounting Inc."}
 	app.render(w, http.StatusOK, "confirmation.tmpl", data)
 
-	if err := form.Deliver(); err != nil {
+	// Initialize email service
+	emailService, err := email.NewEmailService()
+	if err != nil {
+		app.errorLog.Printf("Failed to initialize email service: %v", err)
+		http.Error(w, "Sorry, something went wrong with submitting the form.", http.StatusInternalServerError)
+		return
+	}
+
+	if err := form.Deliver(emailService); err != nil {
 		app.errorLog.Println("There was an error submitting the form.")
 		app.errorLog.Print(err)
 		http.Error(w, "Sorry, something went wrong with submitting the form.", http.StatusInternalServerError)
@@ -141,7 +142,15 @@ func (app *application) contactFormPost(w http.ResponseWriter, r *http.Request) 
 	data.Page = PageParams{Title: "Confirmation", Description: "This page is visible because an inquiry through the contact form has been submitted to KPK Accounting Inc."}
 	app.render(w, http.StatusOK, "confirmation.tmpl", data)
 
-	if err := form.Deliver(); err != nil {
+	// Initialize email service
+	emailService, err := email.NewEmailService()
+	if err != nil {
+		app.errorLog.Printf("Failed to initialize email service: %v", err)
+		http.Error(w, "Sorry, something went wrong with submitting the form.", http.StatusInternalServerError)
+		return
+	}
+
+	if err := form.Deliver(emailService); err != nil {
 		app.errorLog.Println("There was an error submitting the form.")
 		app.errorLog.Print(err)
 		http.Error(w, "Sorry, something went wrong with submitting the form.", http.StatusInternalServerError)
