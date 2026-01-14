@@ -1,2 +1,6 @@
 .env
-kpkwebsite
+kpkwebsiteweb
+*.exe
+*.dll
+*.so
+*.dylib
