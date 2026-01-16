@@ -18,6 +18,13 @@ func (app *application) routes() http.Handler {
 	fileServer := http.FileServer(http.FS(ui.Files))
 	router.Handler(http.MethodGet, "/static/*filepath", fileServer)
 
+	// Google verification file
+	router.Handler(http.MethodGet, "/googlea7fa68673b339779.html", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "text/html; charset=utf-8")
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte("google-site-verification: googlea7fa68673b339779.html"))
+	}))
+
 	dynamic := alice.New(app.sessionManager.LoadAndSave)
 	router.Handler(http.MethodGet, "/", dynamic.ThenFunc(app.home))
 	router.Handler(http.MethodPost, "/", dynamic.ThenFunc(app.homeContactFormPost))
