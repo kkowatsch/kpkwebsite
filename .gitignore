@@ -1,6 +1,5 @@
 .env
 kpkwebsite
-web
 *.exe
 *.dll
 *.so
